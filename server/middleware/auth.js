@@ -4,6 +4,8 @@ require('dotenv').config();
 module.exports = function(req,res,next){
     // get the token from header
     const token = req.header('x-auth-token');
+
+    console.log("auth token",token)
     
     // check token if not exits
 

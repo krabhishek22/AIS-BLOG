@@ -8,7 +8,7 @@ export const userLogin = (user,history) => async(dispatch ) => {
         
         const {data} = await api.userLogin(user);
         dispatch({type: SIGNIN, data})
-        history.push('/')
+        history.goBack();
     } catch (error) {
         console.log(error)
         alert('Invalid Credential')
@@ -19,7 +19,7 @@ export const userLogin = (user,history) => async(dispatch ) => {
 
 export const signup = (formData,history) => async(dispatch) => {
     try {
-        console.log("formData",formData)
+        //console.log("formData",formData)
         
         const {data} = await api.userRegister(formData)
         console.log("data",data)

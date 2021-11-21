@@ -1,13 +1,13 @@
 import React,{useState,useEffect,useCallback} from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import Post from './Post';
-import {getPost} from '../../actions/post';
+import {getPost,getComment} from '../../actions/post';
 
 
 
 
 const Posts = () => {
-    const [maxRange, setMaxRange] = useState(6); 
+    const [maxRange, setMaxRange] = useState(3); 
     
   
     const dispatch = useDispatch();
@@ -19,9 +19,30 @@ const Posts = () => {
 
     // ------------- Conntion with Action --------------
     const post = useSelector((state) => state.post)
+
+    const x = post.length
+
+   console.log("post on homepage",x)
+  
+
+    // --------------Comment section
+    useEffect(() => {
+      dispatch(getComment(post.id))
+    }, [post.id])
+
+    
+    
+  
+  
+
+
+
+
+    // ===============================
  
 
     const loadMore = useCallback(() => {
+      
         setMaxRange(prevRange => prevRange + 3);
       },[])
     
@@ -32,11 +53,15 @@ const Posts = () => {
       
               {
                 post.slice(0, maxRange).map((post) =>(
-                    <Post post={post}/>
+                    <Post post={post} id={post.id}/>
                   ))
               }
               
-              <p className="text-center my-5" style={{cursor:"pointer"}} onClick={loadMore}>Load more</p> 
+
+              {
+                post.length > 3  ?<p className="text-center my-5" style={{cursor:"pointer"}} onClick={loadMore}>Load more</p> : ""
+              }
+               
               </div>
               </div>
               

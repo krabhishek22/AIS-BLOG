@@ -30,7 +30,7 @@ const adminLogin = async(req,res) =>{
             if (loginUser.email !== email || loginUser.password !== password) {
                 res.status(400).json({error: "Invalid Credentials " })
             } else {
-                const token = jwt.sign({email:loginUser.email, id:loginUser.id},'myscretetoken')
+                const token = jwt.sign({email:loginUser.email, id:loginUser.id},'myscretetoken') //SECRETE KEY
                 res.status(201).json({result:loginUser,token})
                 }
     

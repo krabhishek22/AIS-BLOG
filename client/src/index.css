@@ -34,11 +34,19 @@ a{
 .tags{
   font-size: 1rem;
 }
+/* Post card style */
 
+.card_img{
+  height: 250px;
+  margin-bottom: 10px;
+}
+.card_img img{
+  height: 100%;
+}
 /*------------------------ DASHBOARD DESIGH ----------------- */
 .dash_info{
   background-color: #49035a;
-  
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 }
 .dash_info h1{
   font-size: 3rem;
@@ -76,10 +84,12 @@ a{
   color: white;
   margin-top: 20px;
   transition: all .5s ease-in-out;
+  
 }
 .dash_box .create_Post:hover{
   background-color: #8f2434;
-  color:white;
+  
+  box-shadow: white 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 
 .dash_box .edit_Post{
@@ -92,8 +102,10 @@ a{
 }
 .dash_box .edit_Post:hover{
   background-color: rgb(28, 80, 82);
-  color:white;
+ 
+  box-shadow: white 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
+
 .dash_box .view_Post{
   width: 100%;
   height: 100px;
@@ -105,8 +117,9 @@ a{
 
 .dash_box .view_Post:hover{
   background-color: rgb(23, 51, 131);
-  color: white;
+  box-shadow: white 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
+
 .dash_box .comment_Post{
   width: 100%;
   height: 100px;
@@ -118,7 +131,7 @@ a{
 
 .dash_box .comment_Post:hover{
   background-color: rgba(87, 126, 50, 0.829);
-  color: white;
+  box-shadow: white 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 .dash_box  p{
   padding-top: 25px;
@@ -133,12 +146,15 @@ a{
   
 }
 .blogImage{
-  width: 100%;
-  height: 300px;
+  width: 90%;
+  height: 350px;
+  margin: auto;
 }
 .blogImage img{
   width: 100%;
   height: 100%;
+  
+  
 }
 .blogHeading{
   font-size: 2rem;

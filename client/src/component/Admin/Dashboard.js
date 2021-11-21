@@ -26,7 +26,7 @@ const Dashboard = () => {
         <> 
         <div className="container">
             <div className="row">
-                <div className="col-md-6 col-12 col-xxl-6 dash_info my-5">
+                <div className="col-md-6 col-12 col-xxl-6  dash_info my-5">
                     <h1 className="my-5 text-light mt-5 text-center">Welcome to Admin Dashboard</h1>
                     <div className="dash_content">
                         <p className="text-center bg-light p-2 text-uppercase">Workspace</p>

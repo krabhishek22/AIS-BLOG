@@ -1,7 +1,7 @@
 // REDUX ACTION POST STATE
 
 import * as api from '../api/index';
-import {CREATE,FETCH_POST,GET_POST,ALL_POST,UPDATE,DELETE,GET_COMMENT ,SIGNUP,COMMENT,ALL_COMMNET, EDIT_COMMENT} from './types';
+import {CREATE,FETCH_POST,GET_POST,ALL_POST,UPDATE,DELETE,GET_COMMENT ,COMMENTS,COMMENT,ALL_COMMNET, EDIT_COMMENT} from './types';
 
 // --------------------------- SHOW POST ON HOME PAGE(ACTION) ---------------------
 
@@ -39,7 +39,7 @@ export const createPost = (post) => async(dispatch) =>{
 }
 
 
-// ------------------------ SINGLE POST FOR POST DETAILS -------------------------------
+// ------------------------ POST DETAILS ACTION -------------------------------
 
 export const getOnePost = (id) => async(dispatch) =>{
     try {
@@ -49,6 +49,8 @@ export const getOnePost = (id) => async(dispatch) =>{
         console.log(error)
     }
 }
+
+// ----------------------- UPDATE POST ACTION -----------------------------------
 
 export const updatePost = (id,post) => async(dispatch) => {
     try {
@@ -61,6 +63,8 @@ export const updatePost = (id,post) => async(dispatch) => {
         alert("Something went wrong! please try again")
     }
 }
+
+// ------------------------- DELETE POST ACTION -----------------------------------
 
 export const deletePost = (id) => async(dispatch) => {
     try {
@@ -89,7 +93,7 @@ export const commentPost = (comment) => async(dispatch) =>{
         alert("fields can't be empty")
     }
 }
-//-------------------- GET COMMENT ON BLOGPOST -----------------
+//-------------------- GET ONLY APPROVED COMMENTS ON BLOGPOST -----------------
 export const getComment = (id) => async(dispatch) =>{
     try {
         console.log("getComment id for comment shows",id)
@@ -101,7 +105,7 @@ export const getComment = (id) => async(dispatch) =>{
     
 }
 
-// ------------------------------ GET ALL COMMENT FOR ADMIN EDIT --------------------
+// ------------------------------ GET ONLY NOT-APPROVED COMMENT  --------------------
 
 export const allComment = () => async(dispatch) => {
     try {
@@ -113,6 +117,18 @@ export const allComment = () => async(dispatch) => {
         console.log(error)
     }
 }
+
+// -------------------- GET ALL COMMENTS ----------------------------
+export const comments = () => async(dispatch) =>{
+    try {
+        const {data} = await api.comments();
+        dispatch({type:COMMENTS,payload:data})
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 
 export const editComment  = (id,comment) => async(dispatch) => {
     try {

@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import {commentPost} from '../../actions/post';
 import PersonIcon from '@material-ui/icons/Person';
 import {getComment} from '../../actions/post';
-import { useParams } from 'react-router-dom';
+import { useParams ,useHistory} from 'react-router-dom';
 
 
 
 const CommentSection = ({cid}) => {
 
+    const history = useHistory();
     // GET TOKEN FOR USER_ID
     const user = JSON.parse(localStorage.getItem('profile'))
     
@@ -20,7 +21,7 @@ const CommentSection = ({cid}) => {
     const [maxRange, setMaxRange] = useState(3); 
 
     const loadMore = useCallback(() => {
-      setMaxRange(prevRange => prevRange + 4);
+      setMaxRange(prevRange => prevRange + 2);
     },[])
 
     // -----------------------------------------
@@ -46,11 +47,23 @@ const CommentSection = ({cid}) => {
     const dispatch = useDispatch();
     const post = useSelector((state) => state.comment)
     
+    
+
+    
+    
+    
+    
+    
    
   //  ON SUBMIT SEND DATA TO COMMENTPOST ACTION
     const handleClick = (e) =>{
       e.preventDefault()
         dispatch(commentPost(comment));    
+    }
+    
+    const handleLogin = (e) => {
+        e.preventDefault()
+        history.push('/login')
     }
 
     // GET SPECIFIC COMMENTS ON BLOGPOST ACCORDING TO POST_ID
@@ -102,7 +115,8 @@ const CommentSection = ({cid}) => {
                       </div>
                     </div>
                   </div>
-                {user ?  <a className="btn  comment_button mb-3" data-bs-toggle="modal" href="#exampleModalToggle"   role="button">Comment here</a> : <h4 className="p-2 bg-dark text-light text-center">Please login to comment</h4> }
+                {user ?  <a className="btn  comment_button mb-3" data-bs-toggle="modal" href="#exampleModalToggle"  
+                 role="button">Comment here</a> : <button className="btn  comment_button mb-3 " onClick={handleLogin}>Add Comment</button> }
 
               </div>
                 
@@ -115,9 +129,9 @@ const CommentSection = ({cid}) => {
                     <div className="col-md-2 col-xxl-2  text-center comment_icon"><PersonIcon/></div>
                    
                     <div className="col-md-10 col-xx-10">
-                    <div className="row">
-                      <div className="col-md-8 col-xxl-8"><h5 className="text-capitalize">{c.author}</h5></div>
-                      <div className="col-md-4 col-xxl-4 text-end"><p>{new Date(c.create_time).toDateString()}</p> </div>
+                    <div className="row mb-3">
+                      <div className="col-md-8 col-12 col-xxl-8"><h5 className="text-capitalize text-success">{c.author}</h5></div>
+                      <div className="col-md-4 col-12 col-xxl-4 text-muted "><p>{new Date(c.create_time).toLocaleString()}</p> </div>
                     </div>
                       <p className="mb-4"> {c.content}</p>
                      
@@ -129,7 +143,9 @@ const CommentSection = ({cid}) => {
                
            ))}
             {/* BUTTON FOR LORE MORE COMMENTS */}
-             <p className="text-center py-3 " style={{cursor:"pointer"}} onClick={loadMore}>Show more Comment</p> 
+
+            {post.length >3 && !Math.max(post) ?  <p className="text-center py-3 " style={{cursor:"pointer"}} onClick={loadMore}>Show more Comment</p> : ""}
+             
            
            
            </div>

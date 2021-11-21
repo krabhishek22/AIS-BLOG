@@ -23,11 +23,12 @@ const Login = () => {
     const submitLogin = (e) =>{
         e.preventDefault()
         dispatch(userLogin(user,history))
+        
     }
 // ----------------- GET TOKEN FOR AUTHENTICATION -----------------
     const loginUser = localStorage.getItem('profile');
     if(loginUser){
-        return <Redirect to="/"></Redirect>
+        return <Redirect to="/"></Redirect> 
     }
     return (
         <>

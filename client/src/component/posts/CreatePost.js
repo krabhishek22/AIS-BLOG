@@ -1,14 +1,14 @@
 import React,{useState} from 'react';
-import img from '../../images/com.png'
 import { useDispatch } from 'react-redux';
 import { createPost } from '../../actions/post';
+import FileBase from 'react-file-base64';
 
 
 const CreatePost = () => {
     const dispatch = useDispatch()
     
     const[post,setPost] = useState({
-        title:"",content:"",tags:"",status:""
+        title:"",content:"",tags:"",status:"",image_path:""
     });
 
 
@@ -17,7 +17,7 @@ const CreatePost = () => {
     const savePost = (e) =>{
          e.preventDefault();
          dispatch(createPost(post));
-         setPost({title:"",content:"",tags:"",status:""})
+         setPost({title:"",content:"",tags:"",status:"",image_path:""})
     }
     return (
         <>
@@ -43,6 +43,13 @@ const CreatePost = () => {
                                 onChange = {(e) => setPost({...post,title:e.target.value})}
                                 placeholder="Blog Title here *" required/>
                             </div>
+                            <div className="">
+                        <FileBase 
+                            type="file"
+                            multiple = {false}
+                            onDone={({base64})=> setPost({...post, image_path: base64})}
+                        />
+                        </div>
                             <div className="col-md-12 col-12 d-flex justify-content-between tag_status">
                                 <div className="col-md-6 col-12 col-xxl-6 "> 
                                     <div className="form_input_section ">

@@ -1,20 +1,24 @@
 
 const jwt = require('jsonwebtoken')
 
+// --------------- MIDDLEWARE ---------------------------
+
 const newauth = async(req,res,next) =>{
+
     try {
-        let token = localStorage.getItem('token')
-        console.log("middleware token",token)
+        console.log(req.headers)
+        let token = req.headers.authorization.split(" ")[1];
+        console.log("token headers",token)
         //const isCustomAuth = token.length < 500;
 
         
-       let decodedData = jwt.verify(token,'test');
-        req.userId = decodedData ?.indexOf;
+       let decodedData = jwt.verify(token,'myscretetoken');
+        req.userId = decodedData ?.id;
        
         next();
     } catch (error) {
         console.log(error)
-        res.send(error)
+        res.send({message:"token validation failed"})
     }
 }
 

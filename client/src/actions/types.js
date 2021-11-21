@@ -16,3 +16,4 @@ export const COMMENT = "COMMENT";
 export const GET_COMMENT = "GET_COMMENT";
 export const ALL_COMMNET = "ALL_COMMENT";
 export const EDIT_COMMENT = "EDIT_COMMENT";
+export const COMMENTS = "COMMENTS";

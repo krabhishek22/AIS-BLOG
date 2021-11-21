@@ -42,6 +42,10 @@ const AdminCard = ({post,setCurrentId}) => {
                     
                     <div className="card adminCard" >
                         <div className="card-body">
+
+                        <div className="card_img">
+                             <img src={post.image} className="card-img-top img-fluid" />
+                        </div>
                         <Link to ={`/blogPost/${post.id}`}>
                             <h4 className="card-title text-capitalize text-center bg-light py-3 mb-3">{post.title} </h4>
                         </Link>

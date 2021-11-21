@@ -17,7 +17,7 @@ const BlogPost = () => {
     const post = useSelector((state) => state.post)
     const dispatch = useDispatch();
     
-    // DISPATCH ID FOR SINGLE POST DETAILS
+    // DISPATCH ID TO ACTION FOR SINGLE POST DETAILS
     useEffect(() => {
         dispatch(getOnePost(id))
     }, [id])
@@ -26,15 +26,17 @@ const BlogPost = () => {
     return (
         <div className="blogPost_container">
         <div className="col-md-10 col-12 col-xxl-10 mx-auto">
-            <div className="blogImage">
-                <img src={img} alt="_blog_image" />
-            </div>
+           
         
                {
                    post.map((data) => (
                       
                          <> 
+                         
                          <div className = "main_section container ">
+                         <div className="blogImage">
+                             <img src={data.image} alt="_blog_image" />
+                        </div>
                          <div className="col-md-9 col-12 col-xxl-9 mx-auto">
                             <h1 className="text-center BlogHeading py-5 mx-2 ">{data.title}</h1>
                             <div className="d-flex justify-content-between mx-2">

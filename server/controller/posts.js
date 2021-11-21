@@ -1,6 +1,6 @@
 const pool = require("../config/db");
 
-//---------------------- GET ONLY PUBLISHED POST HOME PAGE ----------------------
+//---------------------- GET ONLY PUBLISHED POST FOR HOME PAGE ----------------------
 const getAllPost = async(req,res) =>{
     let published = "published";
     try {
@@ -16,12 +16,12 @@ const getAllPost = async(req,res) =>{
 
 const createPost = async(req,res) =>{
     try {
-        const{title,content,tags,status} = req.body;
-        console.log(req.body)
-        if(!title || !content || !status){
+        const{title,content,tags,status,image_path} = req.body;
+        //console.log(req.body)
+        if(!title || !content || !status ){
             res.status(500).json({message:"Fields can't be an empty"})
         }else{
-            await  pool.query('INSERT INTO tbl_post(title,content,tags,status) VALUES($1,$2,$3,$4)',[title,content,tags,status])
+            await  pool.query('INSERT INTO tbl_post(title,content,tags,status,image) VALUES($1,$2,$3,$4,$5)',[title,content,tags,status,image_path])
             console.log("data inserted successfully");
             res.status(200).json({message:"data inserted successfully"})
         }
@@ -66,9 +66,10 @@ const allPost = async(req,res) =>{
 
 const updatePost = async(req,res) =>{
      const id = req.params.id;
-    const {title,content,tags,status} = req.body;
+    const {title,content,tags,status,image_path} = req.body;
+    console.log(req.body)
     try {
-        const data = await pool.query('UPDATE tbl_post SET title=$1,content=$2,tags=$3,status=$4 WHERE id=$5',[title,content,tags,status,id]);
+        const data = await pool.query('UPDATE tbl_post SET title=$1,content=$2,tags=$3,status=$4,image=$5 WHERE id=$6',[title,content,tags,status,image_path,id]);
         res.status(200).json({message:"Blog updated successfully"});
         console.log("Blog updated successully");
     } catch (error) {
@@ -113,11 +114,10 @@ const commentPost = async(req,res) =>{
     
 }
 
-// ------------------------------- GET COMMENT API -----------------------
+// ------------------------------- GET ONLY APPROVED COMMENT API -----------------------
 
 const getComment = async(req,res) => {
     const id = req.params.id;
-    console.log("get Post id", id)
     const status = "approved";
     try {
         const data =  await pool.query('SELECT * FROM tbl_comment WHERE post_id = $1 and status=$2 ORDER BY id DESC',[id,status])
@@ -129,7 +129,19 @@ const getComment = async(req,res) => {
     
 }
 
-// -------------------- Show comment for admin verification only ---------------------
+// ---------------------------------------- GET ALL COMMENTS -------------------------------
+const comments = async(req,res) =>{
+    const status = "approved";
+   try {
+       const data = await pool.query('SELECT * FROM tbl_comment WHERE status=$1',[status]);
+       res.status(200).json(data.rows)
+       
+   } catch (error) {
+       console.log(error)
+   }
+}
+
+// -------------------- Show all not approved comments for admin verification only ---------------------
 
 const allComment = async(req,res) => {
     const status = "not approved";
@@ -166,4 +178,4 @@ const deleteComment = async(req,res) =>{
     }
 }
 
-module.exports = {getAllPost,createPost,getPost,allPost,updatePost,deletePost, commentPost,getComment,allComment,editComment,deleteComment}
+module.exports = {getAllPost,createPost,getPost,allPost,updatePost,deletePost, commentPost,getComment,allComment,editComment,deleteComment,comments}
