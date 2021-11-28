@@ -7,7 +7,7 @@ const Footer = () => {
     
     return (
         <>
-            <footer className="bg-dark">
+            <footer className="bg-dark ">
                 <div className="container">
                     <div className="row">
                         <div className="co-12 col-lg-10 d-flex align-item-center justify-content-lg-center  mx-auto">

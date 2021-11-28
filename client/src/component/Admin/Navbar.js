@@ -8,7 +8,7 @@ import {useDispatch} from 'react-redux';
 
 
 
-const Navvbar = ({auth:{isAuthenticated, loading},logout}) => {
+const Navbar = ({auth:{isAuthenticated, loading},logout}) => {
 const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')) || JSON.parse(localStorage.getItem('adminToken')));
 const history = useHistory();
 const dispatch = useDispatch();
@@ -63,14 +63,14 @@ useEffect(() =>{
     return (
         <>
 
-            <nav className="navbar navbar-expand-lg sticky-top navbar-light ">
+            <nav className="navbar navbar-expand-lg sticky-top  navbar-light ">
             <div className="container">
-            <NavLink class="navbar-brand" to="/">
+            <NavLink className="navbar-brand" to="/">
       <img src={logo} alt="" width="130" height="50" />
     </NavLink>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                  </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav ms-auto">
@@ -79,7 +79,7 @@ useEffect(() =>{
                     {!loading && (<Fragment>{user||isAuthenticated ?authLink : guestLink}</Fragment>)}
 
                     <li className="nav-item">
-                        {!user ? "":<p className="nav-link text-light ">🤵 {user.result.username}</p>}
+                        {!user ? "":<p className="nav-link text-dark ">{user.result.username} 🤵</p>}
                     </li>
                    
                 </ul>
@@ -88,11 +88,13 @@ useEffect(() =>{
                 <div> <h3></h3></div>
             </div>
         </nav>
+
+
         </>
     )
 }
 
-Navvbar.prototype = {
+Navbar.prototype = {
     logout: PropTypes.func.isRequired,
     auth:PropTypes.object.isRequired
 }
@@ -102,4 +104,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps,{logout})(Navvbar)
+export default connect(mapStateToProps,{logout})(Navbar)

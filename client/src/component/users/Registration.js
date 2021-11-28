@@ -31,11 +31,12 @@ const Registration = () => {
     }
 
     return (
-        <>
+        <> 
+            <div className="signup_bg">
             <div className="container ">
             <div className="row">
-                <div className="col-md-6 col-12 col-xxl-6 mx-auto">
-                <div class="container bg-light px-4 form_container" >
+                <div className="col-md-5 col-12 col-xxl-5 mx-auto">
+                <div class="container  px-4 form_container" >
                     <h1 className="text-center">Sign Up</h1>
                    
                     <hr/>
@@ -89,7 +90,7 @@ const Registration = () => {
  
          </div>
 
-       
+         </div>
         </>
     )
 }

@@ -32,10 +32,11 @@ const Login = () => {
     }
     return (
         <>
+        <div className="signup_bg">
              <div className="container ">
             <div className="row my-5">
                 <div className="col-md-5 col-12 col-xxl-5 mx-auto">
-                <div class="container bg-light px-4 form_container" >
+                <div class="container  px-4 form_container" >
                     <h1 className="text-center">Sign In</h1>
                    
                     <hr/>
@@ -64,6 +65,7 @@ const Login = () => {
 
                 </div>
                </div>
+             </div>
              </div>
         </>
     )

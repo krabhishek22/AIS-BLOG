@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react';
 import AdminLogin from './component/Admin/AdminLogin';
-import Navvbar from './component/Admin/Navvbar';
+import Navbar from './component/Admin/Navbar';
 import {Switch, Route} from "react-router-dom";
 import Dashboard from './component/Admin/Dashboard';
 
@@ -33,7 +33,7 @@ const App = () => {
     return (
         <> 
         <Provider store={store}>
-        <Navvbar/>
+        <Navbar/>
          <Switch>
          <Route exact path="/" component={Posts} ></Route>
          <Route path="/blogPost/:id" component={BlogPost}></Route>

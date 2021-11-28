@@ -48,7 +48,17 @@ const Posts = () => {
     
     return (
         <>
+         <div className="mb-5 slider ">
+           
+            <div className="pt-5">
+                <h1 className="text-center justify-content-between pt-5 text-light">Welcome to the Blogs</h1>
+                <h5 className="text-center text-light"> "Don't focus on having a great blog. Focus on producing a blog that's great for your readers." - Brian Clark</h5>
+            </div>
+            
+           </div>
            <div className="container  ">
+          
+           
             <div className="row my-4">
       
               {

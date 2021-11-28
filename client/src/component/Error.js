@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 const Error = () => {
     return (
         <>
-            <div className="container bg-dark" id="notfound">
+            <div className="container " id="notfound">
                 <div className="notfound">
                     <div className="notfound-404">
                         <h1>404</h1>
@@ -15,10 +15,11 @@ const Error = () => {
                     <p className="mb-5 text-center"  data-aos="fade-left">
                         The page you are looking for might have been removed or its name changed or is temporarily unavailable.
                     </p>
-                    <div className="button_block d-flex align-items-center justify-content-center mt-5">
-                        <NavLink to="/" className="button ">Back To Homepage </NavLink>
+                    <div className="button_block d-flex align-items-center justify-content-center">
+                        <NavLink to="/" className="button text-light p-3">Back To Homepage </NavLink>
                     </div>
                 </div>
+              
             </div>
         </>
     )
